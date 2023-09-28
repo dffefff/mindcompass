@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739712242269",
+    "project_id": "mindcompass-e4703",
+    "storage_bucket": "mindcompass-e4703.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739712242269:android:5cfaf4d308b68da8bef3b4",
+        "android_client_info": {
+          "package_name": "com.example.mindcompass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJGH8veNI4YW1g5zwgYkMg-bcmb8wMSbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
