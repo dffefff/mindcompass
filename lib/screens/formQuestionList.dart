@@ -30,27 +30,22 @@ class _FormQuestionListScreenState extends State<FormQuestionListScreen> {
     final user = FirebaseAuth.instance.currentUser!;
 
     try {
-      final docRef =
-          await FirebaseFirestore.instance.collection('questions').add({
+      await FirebaseFirestore.instance
+          .collection('questions')
+          .doc(user.uid)
+          .set({
         'questions': textList,
         'createdAt': Timestamp.now(),
         'userId': user.uid,
       });
 
-      if (docRef.id.isNotEmpty) {
-        // Data added successfully
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (ctx) => const HomeScreen(),
-          ),
-        );
-      } else {
-        // Handle the case where data was not added successfully
-        print('Data was not added to Firestore');
-      }
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (ctx) => const HomeScreen(),
+        ),
+      );
     } catch (e) {
-      // Handle any Firestore errors
       print('Error adding data to Firestore: $e');
     }
   }
@@ -100,8 +95,7 @@ class _FormQuestionListScreenState extends State<FormQuestionListScreen> {
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  minimumSize:
-                      const Size(double.infinity, 48), // Full width button
+                  minimumSize: const Size(double.infinity, 48),
                 ),
                 onPressed: () {
                   if (controllers.length < 8 &&
