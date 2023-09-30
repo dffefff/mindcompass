@@ -1,4 +1,5 @@
 import 'package:mindcompass/screens/auth.dart';
+import 'package:mindcompass/screens/formQuestionList.dart';
 import 'package:mindcompass/screens/home.dart';
 import 'package:mindcompass/screens/splash.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,7 +35,13 @@ class App extends StatelessWidget {
           }
 
           if (snapshot.hasData) {
-            return const HomeScreen();
+            final user = FirebaseAuth.instance.currentUser;
+            if (user != null &&
+                user.metadata.creationTime == user.metadata.lastSignInTime) {
+              return const FormQuestionListScreen(); // Show NewUserScreen for new users
+            } else {
+              return const HomeScreen(); // Show HomeScreen for returning users
+            }
           }
 
           return const AuthScreen();
